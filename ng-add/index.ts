@@ -1,6 +1,7 @@
 import { Rule, SchematicContext, SchematicsException, Tree, chain } from '@angular-devkit/schematics';
 import { experimental, JsonParseMode, parseJson } from '@angular-devkit/core';
 import { addPackageJsonDependency, NodeDependency, NodeDependencyType } from 'schematics-utilities';
+import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 
 function addPackageJsonDependencies(): Rule {
     return (host: Tree, context: SchematicContext) => {
@@ -107,9 +108,19 @@ export function sourceMapBuilder(options: NgAddOptions): Rule {
     };
 }
 
+export function installPackageJsonDependencies(): Rule {
+    return (host: Tree, context: SchematicContext) => {
+      context.addTask(new NodePackageInstallTask());
+      context.logger.log('info', `🔍 Installing packages...`);
+  
+      return host;
+    };
+  }
+
 export default function (options: NgAddOptions): Rule {
     return chain([
         sourceMapBuilder(options),
-        addPackageJsonDependencies()
+        addPackageJsonDependencies(),
+        installPackageJsonDependencies()
     ]);
 }
