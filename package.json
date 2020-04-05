@@ -1,6 +1,6 @@
 {
   "name": "@ngx-builders/analyze",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "index.js",
   "builders": "./builders.json",
@@ -9,8 +9,22 @@
     "build": "tsc",
     "test": "ts-node node_modules/jasmine/bin/jasmine command/index_spec.ts"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngx-builders/source-map-analyzer.git"
+  },
+  "keywords": [
+    "angular",
+    "schematics",
+    "cli",
+    "angular-cli",
+    "netlify",
+    "deploy",
+    "ng run",
+    "ng builder",
+    "Angular Buidler"
+  ],
+  "author": "Santosh Yadav <santosh.yadav198613@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@types/jasmine": "^3.3.12",
