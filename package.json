@@ -21,7 +21,7 @@
     "typescript": "^3.8.0"
   },
   "dependencies": {
-    "@angular-devkit/architect": "^0.800.0-beta.11",
+    "@angular-devkit/architect": "^0.901.0",
     "schematics-utilities": "^2.0.1"
   }
 }
