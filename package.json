@@ -25,7 +25,7 @@
     "Angular Buidler"
   ],
   "author": "Santosh Yadav <santosh.yadav198613@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/jasmine": "^3.3.12",
     "@types/node": "^11.15.9",
@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@angular-devkit/architect": "^0.800.0-beta.11",
-    "schematics-utilities": "^2.0.1"
+    "schematics-utilities": "^2.0.1",
+    "source-map-explorer": "^2.4.2"
   }
 }

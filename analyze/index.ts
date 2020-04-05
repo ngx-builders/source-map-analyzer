@@ -4,6 +4,7 @@ import { Schema } from './schema';
 import util from 'util';
 import { exec } from 'child_process';
 import fs from 'fs';
+import { explore } from 'source-map-explorer';
 
 export const execAsync = util.promisify(exec);
 
@@ -17,7 +18,7 @@ export default createBuilder<any>(
 
       const overrides = {
         // this is an example how to override the workspace set of options
-        ...({  sourceMap: true })
+        ...({ sourceMap: true })
       };
 
 
@@ -34,11 +35,15 @@ export default createBuilder<any>(
         const mainFile = file.find(f => f.endsWith('.js'));
         console.log(mainFile);
 
-        const commandToPublish = `source-map-explorer ${builderConfig.outputPath}/${mainFile}`;
+        // const commandToPublish = `source-map-explorer ${builderConfig.outputPath}/${mainFile}`;
 
-        const { stdout, stderr } = await execAsync(commandToPublish);
-        context.logger.info(stdout);
-        context.logger.info(stderr);
+        // const { stdout, stderr } = await execAsync(commandToPublish);
+        // context.logger.info(stdout);
+        // context.logger.info(stderr);
+
+        const result = await explore(`${builderConfig.outputPath}/${mainFile}`, { output: { format: 'html' } });
+        console.log(result.output);
+        console.log(result.bundles);
       }
 
       context.reportStatus(`Done.`);
