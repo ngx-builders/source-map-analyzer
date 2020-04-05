@@ -25,7 +25,7 @@
     "Angular Buidler"
   ],
   "author": "Santosh Yadav <santosh.yadav198613@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/jasmine": "3.5.10",
     "@types/node": "11.15.9",
