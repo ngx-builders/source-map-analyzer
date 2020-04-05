@@ -1,8 +1,8 @@
 {
   "name": "@ngx-builders/analyze",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "",
-  "main": "analyze/index.js",
+  "main": "index.js",
   "builders": "./builders.json",
   "schematics": "./collection.json",
   "scripts": {

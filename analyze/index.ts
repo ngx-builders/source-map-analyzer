@@ -28,8 +28,6 @@ export default createBuilder<any>(
       }, overrides as json.JsonObject);
 
       const result = await build.result;
-      const buildPath = 'dist/analyze';
-      let fileResult: any;
 
       if (result.success) {
         const file = fs.readdirSync(builderConfig.outputPath).filter(f => f.includes('main-es2015'));
