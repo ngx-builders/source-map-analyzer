@@ -8,8 +8,7 @@ function addPackageJsonDependencies(): Rule {
         
         // always add the package under dev dependencies
         const dependencies: NodeDependency[] = [
-            { type: NodeDependencyType.Dev, version: '~0.0.0', name: '@ngx-builders/analyze' },
-            { type: NodeDependencyType.Dev, version: '~2.4.2', name: 'source-map-explorer' }
+            { type: NodeDependencyType.Dev, version: '~0.0.0', name: '@ngx-builders/analyze' }
         ];
         
         dependencies.forEach(dependency => {

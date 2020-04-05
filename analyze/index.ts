@@ -34,9 +34,9 @@ export default createBuilder<any>(
         const mainFile = file.find(f => f.endsWith('.js'));
         console.log(mainFile);
 
-        const commandToPublish = `source-map-explorer ${builderConfig.outputPath}/${mainFile}`;
+        const explorerCommand = `source-map-explorer ${builderConfig.outputPath}/${mainFile}`;
 
-        const { stdout, stderr } = await execAsync(commandToPublish);
+        const { stdout, stderr } = await execAsync(explorerCommand);
         context.logger.info(stdout);
         context.logger.info(stderr);
       }
