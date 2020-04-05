@@ -1,0 +1,9 @@
+{
+  "builders": {
+    "analyze": {
+      "implementation": "./analyze",
+      "schema": "./analyze/schema.json",
+      "description": "Runs the analyzer."
+    }
+  }
+}

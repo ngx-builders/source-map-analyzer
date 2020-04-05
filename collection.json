@@ -1,0 +1,13 @@
+{
+    "$schema": "@angular-devkit/schematics/collection-schema.json",
+    "schematics": {
+      "ng-add": {
+        "description": "Builder to analyze package using source-map-explorer",
+        "factory": "./ng-add/index",
+        "schema": "./ng-add/schema.json",
+        "aliases": [
+          "install"
+        ]
+      }
+    }
+  }

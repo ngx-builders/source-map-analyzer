@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "target": "es2015",
+    "lib": [
+      "es2015",
+      "dom",
+      "es2015.promise",
+      "es2015.collection",
+      "es2015.iterable"
+    ],
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "forceConsistentCasingInFileNames": true,
+    "strictPropertyInitialization": false,
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "declaration": false,
+    "inlineSources": true,
+    "stripInternal": true,
+    "skipLibCheck": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "enableSummariesForJit": false
+  }
+}
