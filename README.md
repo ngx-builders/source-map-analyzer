@@ -36,4 +36,6 @@ Now whenever you want to analyze your angular project just run a command `ng run
 Skip build process during analysis.
 This can be used when you are sure that you haven't changed anything and want to analyze the bundle
 
-MIT
+# License
+[MIT](https://github.com/ngx-builders/source-map-analyzer/blob/master/LICENSE)
+
