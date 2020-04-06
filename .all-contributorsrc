@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "AnkitSharma-007",
+      "name": "Ankit",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/33789321?v=4",
+      "profile": "https://ankitsharmablogs.com/",
+      "contributions": [
+        "doc"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "source-map-analyzer",
+  "projectOwner": "ngx-builders",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
