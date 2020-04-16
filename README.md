@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/%40ngx-builders%2Fanalyze.svg)](https://badge.fury.io/js/%40ngx-builders%2Fanalyze)
+
 # Builder To Run Source Map Explorer
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
