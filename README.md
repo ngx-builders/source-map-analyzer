@@ -4,7 +4,7 @@
 
 # Builder To Run Source Map Explorer
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Want to run the source-map-explorer with Angular? 
@@ -57,6 +57,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://ankitsharmablogs.com/"><img src="https://avatars1.githubusercontent.com/u/33789321?v=4" width="100px;" alt=""/><br /><sub><b>Ankit</b></sub></a><br /><a href="https://github.com/ngx-builders/source-map-analyzer/commits?author=AnkitSharma-007" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/twittwer"><img src="https://avatars1.githubusercontent.com/u/8677948?v=4" width="100px;" alt=""/><br /><sub><b>Tobias Wittwer</b></sub></a><br /><a href="https://github.com/ngx-builders/source-map-analyzer/commits?author=twittwer" title="Documentation">📖</a></td>
   </tr>
 </table>
 
