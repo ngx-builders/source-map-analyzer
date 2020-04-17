@@ -17,10 +17,10 @@ This builder does it for you with zero configuration.
 ng add @ngx-builders/analyze
 ```
 
-NOTE: For this version you need to install source-map-explore globally using
+NOTE: For this version you need to install source-map-explorer globally using
 
 ```
-npm i source-map-explore -g
+npm i source-map-explorer -g
 ```
 
 We will remove this dependecny in future updates.
