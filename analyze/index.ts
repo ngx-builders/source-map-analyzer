@@ -4,6 +4,7 @@ import { Schema } from './schema';
 import util from 'util';
 import { exec } from 'child_process';
 import fs from 'fs';
+import inquirer from 'inquirer';
 
 export const execAsync = util.promisify(exec);
 
@@ -17,9 +18,8 @@ export default createBuilder<any>(
 
       const overrides = {
         // this is an example how to override the workspace set of options
-        ...({  sourceMap: true })
+        ...({ sourceMap: true })
       };
-
 
       const build = await context.scheduleTarget({
         target: 'build',
@@ -30,12 +30,31 @@ export default createBuilder<any>(
       const result = await build.result;
 
       if (result.success) {
-        const file = fs.readdirSync(builderConfig.outputPath).filter(f => f.includes('main-es2015'));
-        const mainFile = file.find(f => f.endsWith('.js'));
-        console.log(mainFile);
+        const file = fs.readdirSync(builderConfig.outputPath).filter(f => f.includes('es2015'));
+        const filesToRemove = file.filter(f => f.includes('polyfills') || f.includes('runtime'));
+        let filesToShow = file.filter(f => !filesToRemove.includes(f) && f.endsWith('.js'));
+
+        let mainFile = filesToShow[0];
+        let promptAvailableBundles;
+
+        if (filesToShow.length > 1) {
+          promptAvailableBundles = await inquirer
+            .prompt([
+              {
+                type: 'list',
+                name: 'bundleName',
+                message: 'Select the bundle to run the analyzer?',
+                choices: filesToShow,
+              },
+            ])
+            .catch(error => {
+              context.logger.info(error);
+            });
+
+          mainFile = promptAvailableBundles.bundleName;
+        }
 
         const explorerCommand = `source-map-explorer ${builderConfig.outputPath}/${mainFile}`;
-
         const { stdout, stderr } = await execAsync(explorerCommand);
         context.logger.info(stdout);
         context.logger.info(stderr);
