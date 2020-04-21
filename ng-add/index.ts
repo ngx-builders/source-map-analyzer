@@ -1,6 +1,5 @@
-import { Rule, SchematicContext, SchematicsException, Tree, chain } from '@angular-devkit/schematics';
+import { Rule, SchematicContext, SchematicsException, Tree } from '@angular-devkit/schematics';
 import { experimental, JsonParseMode, parseJson } from '@angular-devkit/core';
-import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 
 function getWorkspace(host: Tree): { path: string; workspace: experimental.workspace.WorkspaceSchema } {
     const possibleFiles = ['/angular.json', './angular.json'];
