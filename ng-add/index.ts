@@ -1,24 +1,6 @@
 import { Rule, SchematicContext, SchematicsException, Tree, chain } from '@angular-devkit/schematics';
 import { experimental, JsonParseMode, parseJson } from '@angular-devkit/core';
-import { addPackageJsonDependency, NodeDependency, NodeDependencyType } from 'schematics-utilities';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
-
-function addPackageJsonDependencies(): Rule {
-    return (host: Tree, context: SchematicContext) => {
-        
-        // always add the package under dev dependencies
-        const dependencies: NodeDependency[] = [
-            { type: NodeDependencyType.Dev, version: '~0.0.0', name: '@ngx-builders/analyze' }
-        ];
-        
-        dependencies.forEach(dependency => {
-            addPackageJsonDependency(host, dependency);
-            context.logger.log('info', `✅️ Added "${dependency.name}" into ${dependency.type}`);
-        });
-
-        return host;
-    };
-}
 
 function getWorkspace(host: Tree): { path: string; workspace: experimental.workspace.WorkspaceSchema } {
     const possibleFiles = ['/angular.json', './angular.json'];
@@ -107,19 +89,6 @@ export function sourceMapBuilder(options: NgAddOptions): Rule {
     };
 }
 
-export function installPackageJsonDependencies(): Rule {
-    return (host: Tree, context: SchematicContext) => {
-      context.addTask(new NodePackageInstallTask());
-      context.logger.log('info', `🔍 Installing packages...`);
-  
-      return host;
-    };
-  }
-
 export default function (options: NgAddOptions): Rule {
-    return chain([
-        sourceMapBuilder(options),
-        addPackageJsonDependencies(),
-        installPackageJsonDependencies()
-    ]);
+    return sourceMapBuilder(options)
 }
