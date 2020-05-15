@@ -54,7 +54,7 @@ export default createBuilder<any>(
           mainFile = promptAvailableBundles.bundleName;
         }
 
-        const explorerCommand = `source-map-explorer ${builderConfig.outputPath}/${mainFile}`;
+        const explorerCommand = `npx source-map-explorer ${builderConfig.outputPath}/${mainFile}`;
         const { stdout, stderr } = await execAsync(explorerCommand);
         context.logger.info(stdout);
         context.logger.info(stderr);
