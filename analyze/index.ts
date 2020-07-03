@@ -3,22 +3,20 @@ import { json } from '@angular-devkit/core';
 import { Schema } from './schema';
 import util from 'util';
 import { exec } from 'child_process';
-import fs from 'fs';
-import inquirer from 'inquirer';
 
 export const execAsync = util.promisify(exec);
 
 export default createBuilder<any>(
   async (builderConfig: Schema, context: BuilderContext): Promise<BuilderOutput> => {
     try {
-      context.reportStatus(`Executing "${builderConfig.noBuild}"...`);
+      context.reportStatus(`Starting Build`);
       // const child = childProcess.spawn(options.command, options.args, { stdio: 'pipe' });
 
       const configuration = 'production';
 
       const overrides = {
         // this is an example how to override the workspace set of options
-        ...({ sourceMap: true })
+        ...({ sourceMap: true, budgets: [] })
       };
 
       const build = await context.scheduleTarget({
@@ -31,7 +29,10 @@ export default createBuilder<any>(
 
       if (result.success) {
         const mainFile = '*es2015.*.js';
-        const explorerCommand = `npx source-map-explorer ${builderConfig.outputPath}/${mainFile}`;
+        let explorerCommand = `npx source-map-explorer ${builderConfig.outputPath}/${mainFile}`;
+        if (builderConfig.gzip) {
+          explorerCommand = `${explorerCommand} --gzip`;
+        }
         const { stdout, stderr } = await execAsync(explorerCommand);
         context.logger.info(stdout);
         context.logger.info(stderr);
