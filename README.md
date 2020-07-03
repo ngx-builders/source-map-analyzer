@@ -29,16 +29,12 @@ Now whenever you want to analyze your angular project just run a command `ng run
 
 ## 📦 Options <a name="options"></a>
 
-#### --configuration <a name="configuration"></a>
 
-#### --no-build <a name="no-build"></a>
+#### --gzip <a name="gzip"></a>
 - **optional**
-- Default: `false` (string)
+- Default: `false` (boolean)
 - Example:
-  - `ng run [YOUR_PROJECT_NAME]:analyze --no-build` – Angular project is NOT built
-
-Skip build process during analysis.
-This can be used when you are sure that you haven't changed anything and want to analyze the bundle
+  - `ng run [YOUR_PROJECT_NAME]:analyze --gzip` – Give the stats of gzip bundle.
 
 # License
 [MIT](https://github.com/ngx-builders/source-map-analyzer/blob/master/LICENSE)
