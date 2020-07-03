@@ -36,6 +36,13 @@ Now whenever you want to analyze your angular project just run a command `ng run
 - Example:
   - `ng run [YOUR_PROJECT_NAME]:analyze --gzip` – Give the stats of gzip bundle.
 
+
+#### --diffLoading <a name="diffLoading"></a>
+- **optional**
+- Default: `true` (boolean)
+- Example:
+  - `ng run [YOUR_PROJECT_NAME]:analyze --diffLoading=false` – A new Angular 10 project will have differential loading set to false, but if you upgrade from previous version and have differential loading enabled it will remain the same. This flag is for backward compatibilily. You can skip this option is differential loading is enabled.
+
 # License
 [MIT](https://github.com/ngx-builders/source-map-analyzer/blob/master/LICENSE)
 
