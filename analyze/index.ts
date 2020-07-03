@@ -28,7 +28,7 @@ export default createBuilder<any>(
       const result = await build.result;
 
       if (result.success) {
-        const mainFile = '*es2015.*.js';
+        const mainFile = builderConfig.diffLoading ? '*es2015.*.js' : '*.js';
         let explorerCommand = `npx source-map-explorer ${builderConfig.outputPath}/${mainFile}`;
         if (builderConfig.gzip) {
           explorerCommand = `${explorerCommand} --gzip`;
