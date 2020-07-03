@@ -30,30 +30,7 @@ export default createBuilder<any>(
       const result = await build.result;
 
       if (result.success) {
-        const file = fs.readdirSync(builderConfig.outputPath).filter(f => f.includes('es2015'));
-        const filesToRemove = file.filter(f => f.includes('polyfills') || f.includes('runtime'));
-        let filesToShow = file.filter(f => !filesToRemove.includes(f) && f.endsWith('.js'));
-
-        let mainFile = filesToShow[0];
-        let promptAvailableBundles;
-
-        if (filesToShow.length > 1) {
-          promptAvailableBundles = await inquirer
-            .prompt([
-              {
-                type: 'list',
-                name: 'bundleName',
-                message: 'Select the bundle to run the analyzer?',
-                choices: filesToShow,
-              },
-            ])
-            .catch(error => {
-              context.logger.info(error);
-            });
-
-          mainFile = promptAvailableBundles.bundleName;
-        }
-
+        const mainFile = '*es2015.*.js';
         const explorerCommand = `npx source-map-explorer ${builderConfig.outputPath}/${mainFile}`;
         const { stdout, stderr } = await execAsync(explorerCommand);
         context.logger.info(stdout);
