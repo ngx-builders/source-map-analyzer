@@ -15,6 +15,8 @@ This builder does it for you with zero configuration.
 
 ```
 ng add @ngx-builders/analyze
+OR
+ng add @ngx-builders/analyze --project={projectName}
 ```
 
 NOTE: This version uses npx to install source-map-explorer temporarily if it isn't installed already. If you don't have npx installed, please install it.
