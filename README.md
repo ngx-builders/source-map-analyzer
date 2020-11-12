@@ -1,3 +1,5 @@
+![source-map-analyzer](https://socialify.git.ci/ngx-builders/source-map-analyzer/image?font=Raleway&forks=1&issues=1&language=1&owner=1&pattern=Charlie%20Brown&pulls=1&stargazers=1&theme=Dark)
+
 [![npm version](https://badge.fury.io/js/%40ngx-builders%2Fanalyze.svg)](https://badge.fury.io/js/%40ngx-builders%2Fanalyze)
 ![Node.js CI](https://github.com/ngx-builders/source-map-analyzer/workflows/Node.js%20CI/badge.svg?branch=master)
 [![npm downloads](https://img.shields.io/npm/dt/@ngx-builders/analyze?label=npm%20downloads)](https://www.npmjs.com/package/@ngx-builders/analyze)
