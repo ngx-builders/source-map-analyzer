@@ -40,6 +40,6 @@
   "dependencies": {
     "@angular-devkit/architect": "0.1002.0",
     "@angular-devkit/core": "10.2.0",
-    "schematics-utilities": "^2.0.1"
+    "schematics-utilities": "2.0.3"
   }
 }
