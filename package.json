@@ -31,7 +31,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/jasmine": "3.7.4",
-    "@types/node": "11.15.20",
+    "@types/node": "14.17.0",
     "jasmine": "3.6.3",
     "jasmine-node": "3.0.0",
     "ts-node": "9.0.0",
