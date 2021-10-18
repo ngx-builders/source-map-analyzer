@@ -16,6 +16,9 @@
     "type": "git",
     "url": "git+https://github.com/ngx-builders/source-map-analyzer.git"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "angular",
     "schematics",
