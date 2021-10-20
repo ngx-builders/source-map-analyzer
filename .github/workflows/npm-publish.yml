@@ -6,7 +6,7 @@ name: Node.js Package
 on:
     push:
         branches:
-            - 'releases/**'
+            - 'release/**'
     release:
         types: [created]
 
@@ -31,6 +31,7 @@ jobs:
                   registry-url: https://registry.npmjs.org/
                   scope: '@ngx-builders'
             - run: npm i
+            - run: npm run build
             - run: npm publish
               env:
                   NODE_AUTH_TOKEN: ${{secrets.npm_token}}
