@@ -1,46 +1,18 @@
 import { Rule, SchematicContext, SchematicsException, Tree } from '@angular-devkit/schematics';
-import { experimental, JsonParseMode, parseJson } from '@angular-devkit/core';
+import { getWorkspace, getWorkspacePath, ProjectType, WorkspaceProject } from 'schematics-utilities';
+import { NgAddOptions } from './schema';
 
-function getWorkspace(host: Tree): { path: string; workspace: experimental.workspace.WorkspaceSchema } {
-    const possibleFiles = ['/angular.json', './angular.json'];
-    const path = possibleFiles.find(path => host.exists(path));
-
-    if (!path) {
-        throw new SchematicsException(`Could not find angular.json`);
-    }
-
-    const configBuffer = host.read(path);
-    if (!configBuffer) {
-        throw new SchematicsException(`Could not find angular.json`);
-    }
-
-    const content = configBuffer.toString();
-    let workspace: experimental.workspace.WorkspaceSchema;
-
-    try {
-        workspace = <any>parseJson(content, JsonParseMode.Loose) as experimental.workspace.WorkspaceSchema;
-    } catch (e) {
-        throw new SchematicsException(`Could not parse angular.json: ${e.message}`);
-    }
-
-    return { path, workspace };
-}
-
-interface NgAddOptions {
-    project?: string;
-    siteID: string;
-    netlifyToken: string;
-}
 
 export function sourceMapBuilder(options: NgAddOptions): Rule {
     return (tree: Tree, _context: SchematicContext) => {
         // get the workspace details
-        const { path: workspacePath, workspace } = getWorkspace(tree);
+        const workspaceSchema = getWorkspace(tree);
+        const workspacePath: string = getWorkspacePath(tree);
 
         // getting project name
         if (!options.project) {
-            if (workspace.defaultProject) {
-                options.project = workspace.defaultProject;
+            if (workspaceSchema && workspaceSchema.defaultProject) {
+                options.project = workspaceSchema.defaultProject;
             } else {
                 throw new SchematicsException(
                     'No Angular project selected and no default project in the workspace'
@@ -49,7 +21,7 @@ export function sourceMapBuilder(options: NgAddOptions): Rule {
         }
 
         // Validating project name
-        const project = workspace.projects[options.project];
+        const project: WorkspaceProject<ProjectType.Application> = workspaceSchema.projects[options.project];
         if (!project) {
             throw new SchematicsException(
                 'The specified Angular project is not defined in this workspace'
@@ -59,7 +31,7 @@ export function sourceMapBuilder(options: NgAddOptions): Rule {
         // Checking if it is application
         if (project.projectType !== 'application') {
             throw new SchematicsException(
-                `Deploy requires an Angular project type of "application" in angular.json`
+                `source-map-analyzer requires an Angular project type of "application" in angular.json`
             );
         }
 
@@ -83,7 +55,7 @@ export function sourceMapBuilder(options: NgAddOptions): Rule {
             }
         }
 
-        tree.overwrite(workspacePath, JSON.stringify(workspace, null, 2));
+        tree.overwrite(workspacePath, JSON.stringify(workspaceSchema, null, 2));
         return tree;
     };
 }

@@ -43,7 +43,7 @@ export default createBuilder<any>(
         success: true
       };
     }
-    catch (e) {
+    catch (e:any) {
       return {
         error: e.message,
         success: true

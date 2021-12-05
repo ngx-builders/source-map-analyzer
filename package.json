@@ -1,6 +1,6 @@
 {
   "name": "@ngx-builders/analyze",
-  "version": "2.3.3",
+  "version": "3.0.0",
   "description": "",
   "main": "index.js",
   "builders": "./builders.json",
@@ -10,7 +10,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "ts-node node_modules/jasmine/bin/jasmine command/index_spec.ts"
+    "test": "ts-node node_modules/jasmine/bin/jasmine analyze/index_spec.ts"
   },
   "repository": {
     "type": "git",
@@ -33,16 +33,16 @@
   "author": "Santosh Yadav <santosh.yadav198613@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@types/jasmine": "3.7.4",
-    "@types/node": "14.17.0",
-    "jasmine": "3.7.0",
+    "@types/jasmine": "3.10.2",
+    "@types/node": "16.11.11",
+    "jasmine": "3.10.0",
     "jasmine-node": "3.0.0",
-    "ts-node": "9.1.1",
-    "typescript": "4.2.4"
+    "ts-node": "10.4.0",
+    "typescript": "~4.5.2"
   },
   "dependencies": {
-    "@angular-devkit/architect": "0.1002.0",
-    "@angular-devkit/core": "10.2.0",
+    "@angular-devkit/architect": "0.1300.0",
+    "@angular-devkit/core": "13.0.0",
     "schematics-utilities": "2.0.3"
   }
 }

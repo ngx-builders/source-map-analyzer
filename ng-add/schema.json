@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "source-map-explore",
+  "$id": "source-map-explore",
   "title": "Builder to analyze using source-map-explorer",
   "type": "object",
   "properties": {
