@@ -1,7 +1,7 @@
 {
   "name": "@ngx-builders/analyze",
-  "version": "3.0.0",
-  "description": "",
+  "version": "3.0.1",
+  "description": "Angular Builder To Run Source Map Explorer",
   "main": "index.js",
   "builders": "./builders.json",
   "schematics": "./collection.json",
@@ -43,6 +43,6 @@
   "dependencies": {
     "@angular-devkit/architect": "0.1300.0",
     "@angular-devkit/core": "13.0.0",
-    "schematics-utilities": "2.0.3"
+    "@angular-devkit/schematics": "^13.0.0"
   }
 }

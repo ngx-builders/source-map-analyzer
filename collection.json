@@ -3,7 +3,7 @@
     "schematics": {
       "ng-add": {
         "description": "Builder to analyze package using source-map-explorer",
-        "factory": "./ng-add/index",
+        "factory": "./ng-add/index#ngAdd",
         "schema": "./ng-add/schema.json",
         "aliases": [
           "install"
