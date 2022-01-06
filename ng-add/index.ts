@@ -1,18 +1,17 @@
-import { Rule, SchematicContext, SchematicsException, Tree } from '@angular-devkit/schematics';
-import { getWorkspace, getWorkspacePath, ProjectType, WorkspaceProject } from 'schematics-utilities';
+import { TargetDefinition } from '@angular-devkit/core/src/workspace';
+import { chain, Rule, SchematicsException, Tree } from '@angular-devkit/schematics';
 import { NgAddOptions } from './schema';
+import { getWorkspace, updateWorkspace } from './workspace';
 
 
-export function sourceMapBuilder(options: NgAddOptions): Rule {
-    return (tree: Tree, _context: SchematicContext) => {
-        // get the workspace details
-        const workspaceSchema = getWorkspace(tree);
-        const workspacePath: string = getWorkspacePath(tree);
+export function ngAdd(options: NgAddOptions): Rule {
+    return async (host: Tree) => {
+        const workspace = await getWorkspace(host);
 
-        // getting project name
+        // Get project name 
         if (!options.project) {
-            if (workspaceSchema && workspaceSchema.defaultProject) {
-                options.project = workspaceSchema.defaultProject;
+            if (workspace.extensions.defaultProject) {
+                options.project = workspace.extensions.defaultProject as string;
             } else {
                 throw new SchematicsException(
                     'No Angular project selected and no default project in the workspace'
@@ -21,45 +20,32 @@ export function sourceMapBuilder(options: NgAddOptions): Rule {
         }
 
         // Validating project name
-        const project: WorkspaceProject<ProjectType.Application> = workspaceSchema.projects[options.project];
+        const project = workspace.projects.get(options.project);
         if (!project) {
-            throw new SchematicsException(
-                'The specified Angular project is not defined in this workspace'
-            );
+            throw new SchematicsException(`The specified Angular project is not defined in this workspace`);
         }
 
         // Checking if it is application
-        if (project.projectType !== 'application') {
-            throw new SchematicsException(
-                `source-map-analyzer requires an Angular project type of "application" in angular.json`
-            );
+        if (project.extensions['projectType'] !== 'application') {
+            throw new SchematicsException(`source-map-analyzer requires an Angular project type of "application" in angular.json`);
+        }
+        
+        const outputPath: string | undefined = project.targets.get('build')?.options?.outputPath as string;
+
+        if (!outputPath) {
+            const message: string = `Cannot read the output path(architect.build.options.outputPath) of the Angular project "${options.project}" in angular.json`;
+            throw new SchematicsException(message);
         }
 
-        // Getting output path from Angular.json
-        if (
-            !project.architect ||
-            !project.architect.build ||
-            !project.architect.build.options ||
-            !project.architect.build.options.outputPath
-        ) {
-            throw new SchematicsException(
-                `Cannot read the output path(architect.build.options.outputPath) of the Angular project "${options.project}" in angular.json`
-            );
-        }
-
-        // adding deploy statement for builder
-        project.architect['analyze'] = {
-            "builder": "@ngx-builders/analyze:analyze",
-            "options": {
-                "outputPath": project.architect.build.options.outputPath
+        var targetDefinition: TargetDefinition = {
+            builder: "@ngx-builders/analyze:analyze",
+            options: {
+                outputPath: outputPath
             }
         }
 
-        tree.overwrite(workspacePath, JSON.stringify(workspaceSchema, null, 2));
-        return tree;
-    };
-}
+        project.targets.add({ name: 'analyze', ...targetDefinition });
 
-export default function (options: NgAddOptions): Rule {
-    return sourceMapBuilder(options)
+        return chain([updateWorkspace(workspace)]);
+    };
 }
