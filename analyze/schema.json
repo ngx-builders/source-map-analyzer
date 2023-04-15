@@ -9,9 +9,12 @@
     "outputPath": {
       "type": "string"
     },
-    "diffLoading": {
-      "type":"boolean",
-      "default": false
+    "reportPath": {
+      "type": "string"
+    },
+    "reportFormat": {
+      "type": "string",
+      "default": "html"
     }
   }
 }

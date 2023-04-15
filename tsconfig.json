@@ -2,20 +2,14 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "module": "commonjs",
-    "target": "es2015",
+    "target": "ES2020",
+    "outDir": "dist",
     "lib": [
-      "es2015",
-      "dom",
-      "es2015.promise",
-      "es2015.collection",
-      "es2015.iterable"
+      "es2018"
     ],
     "strict": true,
     "allowSyntheticDefaultImports": true,
-    "suppressImplicitAnyIndexErrors": true,
     "forceConsistentCasingInFileNames": true,
-    "strictPropertyInitialization": false,
-    "strictNullChecks": true,
     "sourceMap": false,
     "declaration": false,
     "inlineSources": false,
@@ -32,6 +26,5 @@
   "angularCompilerOptions": {
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
-    "enableSummariesForJit": false
   }
 }

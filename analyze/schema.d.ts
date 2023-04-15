@@ -1,5 +1,6 @@
 export interface Schema {
     outputPath: string;
     gzip?: boolean;
-    diffLoading?:boolean;
+    reportPath?: string;
+    reportFormat: 'html' | 'json'  | 'tsv'  ;
 }

@@ -1,53 +1,44 @@
-import { BuilderOutput, createBuilder, BuilderContext } from '@angular-devkit/architect';
-import { json } from '@angular-devkit/core';
-import { Schema } from './schema';
-import util from 'util';
-import { exec } from 'child_process';
+import {
+  BuilderOutput,
+  createBuilder,
+  BuilderContext,
+} from "@angular-devkit/architect";
+import { Schema } from "./schema";
+import util from "util";
+import { exec } from "child_process";
 
 export const execAsync = util.promisify(exec);
 
 export default createBuilder<any>(
-  async (builderConfig: Schema, context: BuilderContext): Promise<BuilderOutput> => {
+  async (
+    builderConfig: Schema,
+    context: BuilderContext
+  ): Promise<BuilderOutput> => {
     try {
-      context.reportStatus(`Starting Build`);
-      // const child = childProcess.spawn(options.command, options.args, { stdio: 'pipe' });
+      context.reportStatus(`Starting Report generation...🚀`);
 
-      const configuration = 'production';
-
-      const overrides = {
-        // this is an example how to override the workspace set of options
-        ...({ sourceMap: true, budgets: [] })
-      };
-
-      const build = await context.scheduleTarget({
-        target: 'build',
-        project: context?.target?.project || '',
-        configuration
-      }, overrides as json.JsonObject);
-
-      const result = await build.result;
-
-      if (result.success) {
-        const mainFile = builderConfig.diffLoading ? '*es2015.*.js' : '*.js';
-        let explorerCommand = `npx source-map-explorer ${builderConfig.outputPath}/${mainFile}`;
-        if (builderConfig.gzip) {
-          explorerCommand = `${explorerCommand} --gzip`;
-        }
-        const { stdout, stderr } = await execAsync(explorerCommand);
-        context.logger.info(stdout);
-        context.logger.info(stderr);
+      const mainFile = "*.js";
+      let explorerCommand = `npx source-map-explorer ${builderConfig.outputPath}/${mainFile}`;
+      if (builderConfig.gzip) {
+        explorerCommand = `${explorerCommand} --gzip`;
       }
+      if(builderConfig.reportPath) {
+        const reportFormat = builderConfig.reportFormat || 'html';
+        explorerCommand = `${explorerCommand} --${reportFormat} ${builderConfig.reportPath}/${context?.target?.project}.html`;
+      }
+      const { stdout, stderr } = await execAsync(explorerCommand);
+      context.logger.info(stdout);
+      context.logger.info(stderr);
 
       context.reportStatus(`Done.`);
       return {
-        success: true
+        success: true,
       };
-    }
-    catch (e:any) {
+    } catch (e: any) {
       return {
         error: e.message,
-        success: true
+        success: true,
       };
     }
-  });
-
+  }
+);

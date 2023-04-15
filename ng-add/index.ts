@@ -14,7 +14,7 @@ export function ngAdd(options: NgAddOptions): Rule {
                 options.project = workspace.extensions.defaultProject as string;
             } else {
                 throw new SchematicsException(
-                    'No Angular project selected and no default project in the workspace'
+                    'No Angular project selected or you are in a Nx workspace'
                 );
             }
         }
