@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@angular-devkit/architect": "0.1300.0",
-    "@angular-devkit/core": "13.0.0",
+    "@angular-devkit/core": "13.3.11",
     "@angular-devkit/schematics": "^13.0.0"
   }
 }
