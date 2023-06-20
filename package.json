@@ -1,6 +1,6 @@
 {
   "name": "@ngx-builders/analyze",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "Angular Builder To Run Source Map Explorer",
   "main": "index.js",
   "builders": "./builders.json",
